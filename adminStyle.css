@@ -1,0 +1,34 @@
+.panelAdmin {
+    list-style: none;
+  }
+  
+  .panelAdmin li {
+    border: solid black 2px;
+    padding: 1%;
+    margin: 1%;
+  }
+  
+  .panelAdmin a {
+    color: black;
+  }
+  
+  .panelAdmin a:hover {
+    color: #00b7ff;
+    text-decoration: none;
+  }
+
+form {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.form-group {
+    text-align: left;
+    font-size: large;
+}
+
+
+#login{
+    margin-top: 10%;
+
+}
