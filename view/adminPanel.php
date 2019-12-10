@@ -11,6 +11,7 @@ if (!isset($_SESSION['loggedin'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,7 +31,8 @@ if (!isset($_SESSION['loggedin'])) {
         <H1>PANEL D'ADMINISTRATION</H1>
         <br>
         <ul class="panelAdmin" >
-            <li> <a href="#"> Gestion du catalogue </a> </li>
+            <li> <a href="gestionCatalogue.php"> Gestion du catalogue </a> </li>
+            <li> <a href="#"> Gestion des catégories </a> </li>
             <li> <a href="#"> Suivi des commandes </a> </li>
             <li> <a href="#"> Gestion des stocks </a> </li>
         </ul>

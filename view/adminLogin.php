@@ -23,13 +23,15 @@ require_once('../model/authentificationAdmin.class.php');
 
 <body>
 
+<?php Identification::connexion(); ?>
+
     <div class="container" id="login">
   
         <h1 class="text-center">Admin</h1>
         <form method="POST" action="adminLogin.php">
             <div class="form-group">
-                <label for="username">Identifiant</label>
-                <input type="text" class="form-control" id="identifiant" name="username">
+                <label for="email">E-mail</label>
+                <input type="text" class="form-control" id="email" name="email">
             </div>
             <div class="form-group">
                 <label for="password">Password</label>

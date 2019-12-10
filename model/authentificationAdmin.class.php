@@ -2,27 +2,27 @@
 
 require_once('connexion_bdd.class.php');
 
-class Identification {
+class Identification
+{
 
 
-    public function connexion(){
+    public static function connexion()
+    {
 
-        if(isset($_POST) && !empty($_POST['username']) && !empty($_POST['password'])) {
+        if (isset($_POST) && !empty($_POST['email']) && !empty($_POST['password'])) {
             Model::Init();
-            $req = Model::$pdo->prepare("SELECT * FROM admin WHERE identifiant=" . $_POST['username']);
-            $req->execute();
-            
+            $req = Model::$pdo->prepare("SELECT * FROM users WHERE email=?");
+            $req->execute(array($_POST['email']));
+
             while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
-                if ($row['identifiant'] != $_POST['password']) {
+                if (($row['password'] != $_POST['password']) || ($row['role'] != "admin")) {
                     echo 'Mauvais login / password. Merci de recommencer';
                 } else {
                     session_start();
-                    header('Location: adminLogin.php');
+                    $_SESSION['loggedin']=true;
+                    header('Location: adminPanel.php');
                 }
+            }
         }
-
-        
     }
-    
-
 }
