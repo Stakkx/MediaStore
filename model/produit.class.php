@@ -49,4 +49,10 @@ class Produit {
         $req = Model::$pdo->prepare("UPDATE produits SET name = ?, description = ?, etat_id = ?, Categories_id = ?, prix = ?, type_id = ?, image = ? WHERE id = $id");
         $req->execute(array($_POST['nom'], $_POST['description'], $_POST['etat'], $_POST['categorie'], $_POST['prix'], $_POST['type'], $_POST['image']));
     }
+
+    public static function deleteProduct($id) {
+        Model::init();
+        $req = Model::$pdo->exec("DELETE FROM produits WHERE id = $id");
+        echo "<script>window.location.replace(\"gestionCatalogue.php\")</script>";
+    }
 }

@@ -8,6 +8,10 @@ if (isset($_POST['addProduct'])){
     Produit::addProduct();
 };
 
+if (isset($_GET['suppr'])){
+    Produit::deleteProduct($_GET['suppr']);
+}
+
 ?>
 
 <!DOCTYPE html>
