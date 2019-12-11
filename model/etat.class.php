@@ -12,5 +12,12 @@ class Etat {
         return $data;
     }
 
+    public static function getEtat($id){
+        Model::Init();
+        $req = Model::$pdo->query("SELECT * FROM etat WHERE id=$id");
+        $data = $req->fetchAll(PDO::FETCH_OBJ);
+        return $data;
+    }
+
 
 }

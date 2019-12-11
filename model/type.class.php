@@ -11,4 +11,5 @@ class Type {
         $data = $req->fetchAll(PDO::FETCH_OBJ);
         return $data;
     }
+
 }

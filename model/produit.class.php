@@ -43,4 +43,10 @@ class Produit {
         $req = Model::$pdo->prepare("INSERT INTO produits(name, description, etat_id, Categories_id, prix, type_id) VALUES (?,?,?,?,?,?)");
         $req->execute(array($_POST['nom'], $_POST['descrip'], $_POST['etat'], $_POST['categorie'], $_POST['prix'], $_POST['type']));
     }
+
+    public static function updateProduct($id) {
+        Model::Init();
+        $req = Model::$pdo->prepare("UPDATE produits SET name = ?, description = ?, etat_id = ?, Categories_id = ?, prix = ?, type_id = ?, image = ? WHERE id = $id");
+        $req->execute(array($_POST['nom'], $_POST['description'], $_POST['etat'], $_POST['categorie'], $_POST['prix'], $_POST['type'], $_POST['image']));
+    }
 }

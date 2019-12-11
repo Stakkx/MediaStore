@@ -23,7 +23,16 @@ if (isset($_POST['addProduct'])){
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    
+    <script>
+        //FONCTION EN JS POUR CONFIRMER LA SUPRESSION
+        function confirmation(){
+            if ( confirm( "Êtes-vous sûre de vouloir supprimer cette entrée ?" ) ) {
+                return true;
+        } else {
+            return false;
+        }
+    }
+    </script>
 </head>
 
 <body>
@@ -33,6 +42,7 @@ if (isset($_POST['addProduct'])){
         <h1> Gestion catalogue</h1>
     </div>
     <br>
+    <p> <a href="adminPanel.php">Retour</a> </p>
 
     <table class="table table-striped">
         <thead>
@@ -60,7 +70,7 @@ if (isset($_POST['addProduct'])){
                 <td>" . (Produit::getCategorie($val->id))[0]['name'] . "</td>
                 <td>" . $val->prix ."</td>
                 <td>" . (Produit::getType($val->id))[0]['name'] . "</td>
-                <td> <button class='btn btn-secondary' >Modifier</button> </td>
+                <td><a href='modificationCatalogue.php?id=".$val->id."'>Modifier</a>/<a onclick='return confirmation();' href='gestionCatalogue.php?suppr=".$val->id."'>Supprimer</a></td>
                 </tr>";
             }
             
