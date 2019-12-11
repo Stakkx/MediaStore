@@ -26,14 +26,14 @@ class Produit {
 
     public static function getCategorie(int $id){
         Model::Init();
-        $req = Model::$pdo->query("SELECT c.name FROM produits p INNER JOIN categories c ON c.id = p.etat_id WHERE p.id = $id");
+        $req = Model::$pdo->query("SELECT c.name FROM produits p INNER JOIN categories c ON c.id = p.Categories_id WHERE p.id = $id");
         $data = $req->fetchAll(PDO::FETCH_ASSOC);
         return $data;
     }
 
     public static function getType(int $id){
         Model::Init();
-        $req = Model::$pdo->query("SELECT t.name FROM produits p INNER JOIN type t ON t.id = p.etat_id WHERE p.id = $id");
+        $req = Model::$pdo->query("SELECT t.name FROM produits p INNER JOIN type t ON t.id = p.type_id WHERE p.id = $id");
         $data = $req->fetchAll(PDO::FETCH_ASSOC);
         return $data;
     }
