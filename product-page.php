@@ -60,7 +60,7 @@ $panier = new panier();
           <ul class="navbar-nav nav-flex-icons">
             <li class="nav-item">
               <a class="nav-link waves-effect" href="panier.php">
-                <span class="badge red z-depth-1 mr-1"> 1 </span>
+              <span class="badge red z-depth-1 mr-1"> <?= array_sum($_SESSION['panier']) ?> </span>
                 <i class="fas fa-shopping-cart"></i>
                 <span class="clearfix d-none d-sm-inline-block"> Panier </span>
               </a>
