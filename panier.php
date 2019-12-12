@@ -121,19 +121,19 @@ if(isset($_GET['del'])){
             ?>
 
             <li class="list-group-item d-flex justify-content-between lh-condensed">
-              
+              <img src="<?= $product->image ?>" alt="" class="img-fuild" width="50px" height="50px">
               <div>
                 <h6 class="my-0"><?= $product->name ?></h6>
-                <small class="text-muted">Quantité :  <a href="panier.php?del=<?= $product->id ?>" class="d-flex">Supprimer article</a> </small>
+                <small class="text-muted">Quantité : <?= $_SESSION['panier'][$product->id] ?> <a href="panier.php?del=<?= $product->id ?>" class="d-flex">Supprimer article</a> </small>
               </div>
-              <div class="text-muted"> <?= $product->prix ?> €  </div> 
+              <div class="text-muted"> <?= number_format($product->prix,2,',','') ?> €  </div> 
             </li>
             
             <?php endforeach; ?>
  
             <li class="list-group-item d-flex justify-content-between">
-              <span>Total (USD)</span>
-              <strong>$20</strong>
+              <span>Total</span>
+              <strong> <?= number_format($panier->total(),2,',','') ?> €</strong>
             </li>
           </ul>
           
