@@ -12,6 +12,10 @@ class Panier {
             $_SESSION['panier'] = array();
         }
 
+        if(isset($_POST['panier'])){
+            $this->recalc();
+        }
+
     }
 
     public function add($product_id){
@@ -42,6 +46,13 @@ class Panier {
 
         return $total;
     }
+
+
+    public function recalc(){
+        $_SESSION['panier'] = $_POST['panier']['quantité'];
+    }
+   
+
 
 
 

@@ -8,6 +8,8 @@ if (isset($_GET['del'])) {
   $panier->del($_GET['del']);
 }
 
+
+
 ?>
 
 <!DOCTYPE html>
@@ -102,7 +104,7 @@ if (isset($_GET['del'])) {
 
           <div class="card">
 
-            <form class="card-body" method="POST" action="">
+            <form class="card-body" method="POST" action="panier.php">
 
               <ul class="list-group mb-3 z-depth-1">
 
@@ -115,7 +117,6 @@ if (isset($_GET['del'])) {
                   $products = Produit::getPanier(implode(',', $ids));
                 }
 
-                
                 foreach ($products as $product) :
                   ?>
 
@@ -123,9 +124,13 @@ if (isset($_GET['del'])) {
                     <img src="<?= $product->image ?>" alt="" class="img-fuild" width="50px" height="50px">
                     <div>
                       <h6 class="my-0"><?= $product->name ?></h6>
-                      <small class="text-muted">Quantité : <?= $_SESSION['panier'][$product->id] ?> <a href="panier.php?del=<?= $product->id ?>" class="d-flex">Supprimer article</a> </small>
+                        <label for="quantité">Quantités :</label>
+                        <input type="number" id="quantité" name="panier[quantité][<?= $product->id ?>]" max="100" value="<?= $_SESSION['panier'][$product->id] ?>">
+                       <small> <button class="btn btn-link" type="submit"> Valider quantité</button> </small> 
+                       <small><a href="panier.php?del=<?= $product->id ?>" class="d-flex">Supprimer article</a></small>
                     </div>
-                    <div class="text-muted"> <?= number_format($product->prix * $_SESSION['panier'][$product->id], 2, ',', '') ?> € </div>
+                    <div class="text-muted"> <?= number_format($product->prix * $_SESSION['panier'][$product->id], 2, ',', '') ?> € <br>
+                    </div>
                   </li>
 
                 <?php endforeach; ?>
@@ -137,7 +142,7 @@ if (isset($_GET['del'])) {
               </ul>
 
 
-              <button class="btn btn-primary btn-lg btn-block" type="submit">Valider</button>
+              <button class="btn btn-primary btn-lg btn-block" type="button">Valider</button>
 
             </form>
 
