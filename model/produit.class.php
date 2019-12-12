@@ -55,4 +55,13 @@ class Produit {
         $req = Model::$pdo->exec("DELETE FROM produits WHERE id = $id");
         echo "<script>window.location.replace(\"gestionCatalogue.php\")</script>";
     }
+
+    public static function getPanier($id) {
+        Model::init();
+        $req = Model::$pdo->query("SELECT * FROM produits WHERE id IN ($id)");
+        $data = $req->fetchAll(PDO::FETCH_OBJ);
+        return $data;
+ 
+    }
+
 }

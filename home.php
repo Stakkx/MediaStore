@@ -1,6 +1,9 @@
 <?php
 
-require_once('model/produit.class.php')
+require_once('model/produit.class.php');
+require_once('model/panier.class.php');
+
+$panier = new panier();
 
 ?>
 
@@ -55,7 +58,7 @@ require_once('model/produit.class.php')
     <div class="container">
 
       <!-- Brand -->
-      <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
+      <a class="navbar-brand waves-effect" href="home.php">
         <strong class="blue-text">MediaStore</strong>
       </a>
 
@@ -76,10 +79,10 @@ require_once('model/produit.class.php')
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">CD</a>
+            <a class="nav-link waves-effect" href="#" target="_blank">CD</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/getting-started/download/"
+            <a class="nav-link waves-effect" href="#"
               target="_blank">DVD</a>
           </li>
         </ul>
@@ -87,7 +90,7 @@ require_once('model/produit.class.php')
         <!-- Right -->
         <ul class="navbar-nav nav-flex-icons">
           <li class="nav-item">
-            <a class="nav-link waves-effect">
+            <a class="nav-link waves-effect" href="panier.php">
               <span class="badge red z-depth-1 mr-1"> 1 </span>
               <i class="fas fa-shopping-cart"></i>
               <span class="clearfix d-none d-sm-inline-block"> Panier </span>
@@ -99,7 +102,7 @@ require_once('model/produit.class.php')
           <a href="#" class="icontext mr-4 dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 
             <div class="text">
-              Bonjour
+              Bonjour Visiteur
             </div>
           </a> <!-- iconbox // -->
           <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 32px, 0px);">
@@ -237,53 +240,77 @@ require_once('model/produit.class.php')
       <!--/.Navbar-->
 
 
-      <!--Section: Products v.3-->
-      <section class="text-center mb-4">
-        <!--Grid row-->
-        <div class="row wow fadeIn">
-          <!--Grid column-->
-          <div class="col-lg-3 col-md-6 mb-4">
-            <!--Card-->
-            <div class="card">
-              <!--Card image-->
-              <div class="view overlay">
-                <img src="https://images-na.ssl-images-amazon.com/images/I/71xrTgmOdnL._SL1500_.jpg"
-                height="335rem"
-                  alt="">
-                <a>
-                  <div class="mask rgba-white-slight"></div>
+
+
+
+      <!--SECTION PRODUCT -->
+      <section class='text-center mb-4'>
+
+        <!--ROW FADE IN-->
+        <div class='row wow fadeIn'>
+          
+        <!-- BOUCLE AFFICHAGE COLUMNS -->
+         <?php $data = Produit::getAllProducts(); 
+        foreach ($data as $product):
+        ?>
+
+           <div class='col-lg-3 col-md-6 mb-4'>
+
+            <!--CARD-->
+            <div class='card'>
+
+              <!--CARD IMAGE-->
+              <div class='view overlay'>
+                <img src='<?= $product->image ?>'
+                height='335rem'>
+                <a href='product-page.php?product_id=<?= $product->id ?>'>
+                  <div class='mask rgba-white-slight'></div>
                 </a>
               </div>
-              <!--Card image-->
+              <!--END CARD IMAGE-->
 
-              <!--Card content-->
-              <div class="card-body text-center">
-                <!--Category & Title-->
-                  <h5>Action</h5>
-                </a>
+
+
+              <!--CONTENU DE LA CARD-->
+              <div class='card-body text-center'>
+                <!--CATEGORIE ET TITRE-->
+                  <h5><?= (Produit::getCategorie($product->id))[0]['name'] ?></h5>
                 <h5>
                   <strong>
-                    <a href="" class="dark-grey-text">Rambo the Last Blood
-                      <span class="badge badge-pill danger-color">NEW</span>
+                    <a href='product-page.php?product_id=<?= $product->id ?>' class='dark-grey-text'><?= $product->name ?>
+                      <span class='badge badge-pill danger-color'>NEW</span>
                     </a>
                   </strong>
                 </h5>
-                <h4 class="font-weight-bold blue-text">
-                  <strong>15$</strong>
+                <h4 class='font-weight-bold blue-text'>
+                  <strong><?= number_format($product->prix,2,',',''); ?>€</strong> 
+                  <!-- NUMBER FORMAT POUR RAJOUTER DEUX ZERO APRES LE PRIX SEPARE PAR VURGULE -->
                 </h4>
               </div>
-              <!--Card content-->
+              <!--FIN CONTENU CARD-->
             </div>
-            <!--Card-->
+      
           </div>
-          <!--Grid column-->
+
+          <?php endforeach ?>
+          <!--END CARD-->
+          
+        </div>
+          <!--END ROW-->
       </section>
-      <!--Section: Products v.3-->
+      <!--END SECTION PRODUCT-->
+
+
+
 
 
     </div>
   </main>
   <!--Main layout-->
+
+
+
+
 
   <!--Footer-->
   <footer class="page-footer text-center font-small mt-4 wow fadeIn">
