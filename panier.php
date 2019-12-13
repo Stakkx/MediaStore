@@ -53,10 +53,10 @@ if (isset($_GET['del'])) {
             <a class="nav-link waves-effect" href="home.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link waves-effect" href="#" target="_blank">CD</a>
+            <a class="nav-link waves-effect" href="#">CD</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link waves-effect" href="#" target="_blank">DVD</a>
+            <a class="nav-link waves-effect" href="#">DVD</a>
           </li>
         </ul>
 
@@ -124,10 +124,10 @@ if (isset($_GET['del'])) {
                     <img src="<?= $product->image ?>" alt="" class="img-fuild" width="50px" height="50px">
                     <div>
                       <h6 class="my-0"><?= $product->name ?></h6>
-                        <label for="quantité">Quantités :</label>
-                        <input type="number" id="quantité" name="panier[quantité][<?= $product->id ?>]" max="100" value="<?= $_SESSION['panier'][$product->id] ?>">
-                       <small> <button class="btn btn-link" type="submit"> Valider quantité</button> </small> 
-                       <small><a href="panier.php?del=<?= $product->id ?>" class="d-flex">Supprimer article</a></small>
+                      <label for="quantité">Quantités :</label>
+                      <input type="number" id="quantité" name="panier[quantité][<?= $product->id ?>]" max="100" value="<?= $_SESSION['panier'][$product->id] ?>">
+                      <small> <button class="btn btn-link" type="submit"> Valider quantité</button> </small>
+                      <small><a href="panier.php?del=<?= $product->id ?>" class="d-flex">Supprimer article</a></small>
                     </div>
                     <div class="text-muted"> <?= number_format($product->prix * $_SESSION['panier'][$product->id], 2, ',', '') ?> € <br>
                     </div>
